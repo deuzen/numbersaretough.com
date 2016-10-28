@@ -1,9 +1,12 @@
+'use strict';
+
 const gulp = require('gulp');
 const semanticBuild = require('./app/vendor/semantic/tasks/build');
 const semanticClean = require('./app/vendor/semantic/tasks/clean');
 const browserSync = require('browser-sync').create();
 const runSequence = require('run-sequence');
 const del = require('del');
+const eslint = require('gulp-eslint');
 
 /*--------------
     Semantic
@@ -11,9 +14,7 @@ const del = require('del');
 
 gulp.task('semantic:build', semanticBuild);
 gulp.task('semantic:cleanDist', semanticClean);
-gulp.task('semantic:cleanBuild', () => {
-  return del('build/assets/semantic');
-});
+gulp.task('semantic:cleanBuild', () => del('build/assets/semantic'));
 
 gulp.task('semantic', (callback) => {
   runSequence(['semantic:cleanDist', 'semantic:cleanBuild'], 'semantic:build', callback);
@@ -25,8 +26,19 @@ gulp.task('semantic', (callback) => {
 
 gulp.task('html', () => {
   gulp.src('app/index.html')
-    .pipe(gulp.dest('build/'))
+    .pipe(gulp.dest('build/'));
 });
+
+/*--------------
+   javascript
+---------------*/
+
+gulp.task('lint', () =>
+  gulp.src(['app/js/**/*.js', '!node_modules/**'])
+    .pipe(eslint())
+    .pipe(eslint.format())
+    .pipe(eslint.failAfterError())
+);
 
 /*--------------
   browser-sync
@@ -35,8 +47,8 @@ gulp.task('html', () => {
 gulp.task('browser-sync', () => {
   browserSync.init({
     server: {
-      baseDir: 'build'
-    }
+      baseDir: 'build',
+    },
   });
 });
 
