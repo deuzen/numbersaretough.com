@@ -9,7 +9,7 @@ const del = require('del');
 const eslint = require('gulp-eslint');
 
 /*--------------
-    Semantic
+   Semantic UI
 ---------------*/
 
 gulp.task('semantic:build', semanticBuild);
