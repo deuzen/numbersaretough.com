@@ -15,7 +15,6 @@ const eslint = require('gulp-eslint');
 gulp.task('semantic:build', semanticBuild);
 gulp.task('semantic:cleanDist', semanticClean);
 gulp.task('semantic:cleanBuild', () => del('build/assets/semantic'));
-
 gulp.task('semantic', (callback) => {
   runSequence(['semantic:cleanDist', 'semantic:cleanBuild'], 'semantic:build', callback);
 });
