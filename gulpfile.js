@@ -60,7 +60,7 @@ gulp.task('reload', () => {
 ---------------*/
 
 gulp.task('default', (callback) => {
-  runSequence('html', 'browser-sync');
+  runSequence('lint', 'html', 'browser-sync');
 
   gulp.watch('app/index.html', () => {
     runSequence('html', 'reload', callback);
