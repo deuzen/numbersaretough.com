@@ -1,0 +1,41 @@
+{
+  "base": "app/vendor/semantic/",
+  "paths": {
+    "source": {
+      "config": "src/theme.config",
+      "definitions": "src/definitions/",
+      "site": "src/site/",
+      "themes": "src/themes/"
+    },
+    "output": {
+      "packaged": "../../../build/assets/semantic/",
+      "uncompressed": "dist/components/",
+      "compressed": "dist/components/",
+      "themes": "../../../build/assets/semantic/themes/"
+    },
+    "clean": "dist/"
+  },
+  "permission": 744,
+  "autoInstall": false,
+  "rtl": false,
+  "components": [
+    "reset",
+    "button",
+    "container",
+    "header",
+    "icon",
+    "image",
+    "input",
+    "label",
+    "list",
+    "form",
+    "grid",
+    "item",
+    "checkbox",
+    "modal",
+    "form",
+    "state",
+    "visibility"
+  ],
+  "version": "2.2.6"
+}
