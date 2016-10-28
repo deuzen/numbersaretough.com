@@ -6,6 +6,9 @@ module.exports = {
   },
   'parserOptions': {
     'sourceType': 'script',
+    'ecmaFeatures': {
+      'impliedStrict': true,
+    },
   },
   'rules': {
     'no-plusplus': ['error', { 'allowForLoopAfterthoughts': true }],

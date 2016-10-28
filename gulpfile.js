@@ -1,5 +1,3 @@
-'use strict';
-
 const gulp = require('gulp');
 const semanticBuild = require('./app/vendor/semantic/tasks/build');
 const semanticClean = require('./app/vendor/semantic/tasks/clean');
@@ -7,6 +5,7 @@ const browserSync = require('browser-sync').create();
 const runSequence = require('run-sequence');
 const del = require('del');
 const eslint = require('gulp-eslint');
+const webpack = require('webpack-stream');
 
 /*--------------
    Semantic UI
@@ -37,6 +36,12 @@ gulp.task('lint', () =>
     .pipe(eslint())
     .pipe(eslint.format())
     .pipe(eslint.failAfterError())
+);
+
+gulp.task('webpack', () =>
+  gulp.src('app/js/**/*.js')
+    .pipe(webpack(require('./webpack.config.js')))
+    .pipe(gulp.dest('build/js'))
 );
 
 /*--------------
