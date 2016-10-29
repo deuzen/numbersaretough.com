@@ -7,6 +7,9 @@ const del = require('del');
 const eslint = require('gulp-eslint');
 const webpack = require('webpack-stream');
 const webpackConfig = require('./webpack.config.js');
+const cleanCSS = require('gulp-clean-css');
+const concat = require('gulp-concat');
+const rename = require('gulp-rename');
 
 /*--------------
    Semantic UI
@@ -46,11 +49,24 @@ gulp.task('webpack', () =>
 );
 
 /*--------------
+       css
+---------------*/
+
+gulp.task('css', () =>
+  gulp.src('app/css/**/*.css')
+    .pipe(concat('main.css'))
+    .pipe(gulp.dest('build/css'))
+    .pipe(cleanCSS())
+    .pipe(rename('main.min.css'))
+    .pipe(gulp.dest('build/css'))
+);
+
+/*--------------
      clean
 ---------------*/
 
 gulp.task('clean', () =>
-  del(['build/js', 'build/*.html'])
+  del(['build/js', 'build/css', 'build/*.html'])
 );
 
 /*--------------
@@ -74,7 +90,7 @@ gulp.task('reload', () => {
 ---------------*/
 
 gulp.task('default', (callback) => {
-  runSequence('clean', 'lint', 'webpack', 'html', 'browser-sync');
+  runSequence('clean', 'lint', ['webpack', 'html', 'css'], 'browser-sync');
 
   gulp.watch('app/index.html', () => {
     runSequence('html', 'reload', callback);
