@@ -1,3 +1,5 @@
+const webpack = require('webpack');
+
 module.exports = {
   output: {
     filename: 'bundle.js',
@@ -9,5 +11,10 @@ module.exports = {
       loader: 'babel-loader',
     }],
   },
+  plugins: [new webpack.optimize.UglifyJsPlugin({
+    compress: {
+      warnings: false,
+    },
+  })],
   devtool: 'cheap-module-eval-source-map',
 };
