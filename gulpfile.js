@@ -46,6 +46,14 @@ gulp.task('webpack', () =>
 );
 
 /*--------------
+     clean
+---------------*/
+
+gulp.task('clean', () =>
+  del(['build/js', 'build/*.html'])
+);
+
+/*--------------
   browser-sync
 ---------------*/
 
@@ -66,7 +74,7 @@ gulp.task('reload', () => {
 ---------------*/
 
 gulp.task('default', (callback) => {
-  runSequence('lint', 'html', 'browser-sync');
+  runSequence('clean', 'lint', 'webpack', 'html', 'browser-sync');
 
   gulp.watch('app/index.html', () => {
     runSequence('html', 'reload', callback);
