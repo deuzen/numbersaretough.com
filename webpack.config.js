@@ -16,5 +16,5 @@ module.exports = {
       warnings: false,
     },
   })],
-  devtool: 'cheap-module-eval-source-map',
+  devtool: 'source-map',
 };

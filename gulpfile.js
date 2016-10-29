@@ -6,6 +6,7 @@ const runSequence = require('run-sequence');
 const del = require('del');
 const eslint = require('gulp-eslint');
 const webpack = require('webpack-stream');
+const webpackConfig = require('./webpack.config.js');
 
 /*--------------
    Semantic UI
@@ -39,8 +40,8 @@ gulp.task('lint', () =>
 );
 
 gulp.task('webpack', () =>
-  gulp.src('app/js/**/*.js')
-    .pipe(webpack(require('./webpack.config.js')))
+  gulp.src('app/js/main.js')
+    .pipe(webpack(webpackConfig))
     .pipe(gulp.dest('build/js'))
 );
 
