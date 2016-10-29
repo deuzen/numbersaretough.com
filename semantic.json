@@ -8,10 +8,10 @@
       "themes": "src/themes/"
     },
     "output": {
-      "packaged": "../../../build/assets/semantic/",
+      "packaged": "../../../build/vendor/semantic/",
       "uncompressed": "dist/components/",
       "compressed": "dist/components/",
-      "themes": "../../../build/assets/semantic/themes/"
+      "themes": "../../../build/vendor/semantic/themes/"
     },
     "clean": "dist/"
   },
